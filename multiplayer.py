@@ -24,7 +24,7 @@ def configure_time_delay():
               "Not syncing time with any server.")
         return
     for i in range(3):
-        ntpdate_out = os.popen("ntpdate -q -u %s" % SERVER_IP)
+        ntpdate_out = os.popen("ntpdate -q %s" % SERVER_IP)
         ntpdate_out = ntpdate_out.read().split('\n')[0]
         ntpdate_out = ntpdate_out.replace(",", "").split(" ")
         offset = float(ntpdate_out[ntpdate_out.index("offset")+1])
