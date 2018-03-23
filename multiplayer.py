@@ -17,6 +17,7 @@ TO_ADD = 0.0
 SERVER_IP = os.environ.get("PLAY_IN_A_BIT_SERVER_IP")
 
 def configure_time_delay():
+    global TO_ADD
     total = 0
     if not SERVER_IP:
         print("PLAY_IN_A_BIT_SERVER_IP not defined."
@@ -32,7 +33,7 @@ def configure_time_delay():
     print("Setting offset = %f" % TO_ADD)
 
 def init(fname):
-    mixer.init()
+    mixer.init(22050, -16, 2, 1024)
     music.load(fname)
     music.rewind()
     music.play()
