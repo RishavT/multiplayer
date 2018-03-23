@@ -28,8 +28,11 @@ def configure_time_delay():
         ntpdate_out = ntpdate_out.read().split('\n')[0]
         ntpdate_out = ntpdate_out.replace(",", "").split(" ")
         offset = float(ntpdate_out[ntpdate_out.index("offset")+1])
-        total += offset
-    TO_ADD = total / 3.0
+        if TO_ADD == 0:
+            TO_ADD = offset
+        else:
+            if abs(TO_ADD) > abs(offset):
+                TO_ADD = offset
     print("Setting offset = %f" % TO_ADD)
 
 def init(fname):
